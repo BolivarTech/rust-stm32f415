@@ -9,4 +9,4 @@ avoid-breaking-exported-api = false
 # Embedded-specific allowances for no_std environments
 too-many-arguments-threshold = 8
 
-# Disable test-related lints for no_std/embedded
+# (No test-related lints to disable; removed invalid field)
