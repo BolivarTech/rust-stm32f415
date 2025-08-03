@@ -1,0 +1,12 @@
+# Clippy configuration for STM32 embedded project
+
+# Cognitive complexity - keep functions manageable
+cognitive-complexity-threshold = 20
+
+# Allow some lints that are common in embedded code
+avoid-breaking-exported-api = false
+
+# Embedded-specific allowances for no_std environments
+too-many-arguments-threshold = 8
+
+# Disable test-related lints for no_std/embedded

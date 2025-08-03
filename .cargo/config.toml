@@ -11,9 +11,9 @@ build-std = ["core"]
 linker = "C:\\Program Files (x86)\\Arm GNU Toolchain arm-none-eabi\\14.3 rel1\\bin\\arm-none-eabi-gcc.exe"  # Uncomment if you want to use the ARM GNU Toolchain linker
 #linker = "arm-none-eabi-gcc"  # Uncomment if you want to use the first arm-none-eabi-gcc in your PATH
 rustflags = [
-    "-C", "link-arg=-Tcpp_src/c-stm32f415rgt6/STM32F415RGTX_FLASH.ld",  # Linker script
-    #"-C", "link-arg=-Tlink.x",
-    #"-C", "link-arg=-Tdefmt.x",
+    #"-C", "link-arg=-TSTM32F415RGTX_FLASH.ld",  # Linker script
+    "-C", "link-arg=-Tlink.x",
+    "-C", "link-arg=-Tdefmt.x",
     # "-C", "link-arg=-Map=output.map",        # Map file for debugging (rust linker)
     "-C", "link-arg=-Wl,-Map=memory.map",      # Map file for debugging (arm-none-eabi-gcc)
     "-C", "link-arg=-Wl,--print-memory-usage", # Print memory usage (arm-none-eabi-gcc)       

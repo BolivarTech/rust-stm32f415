@@ -1,74 +1,44 @@
 #![no_std]
 #![no_main]
 
-use core::panic::PanicInfo;
-use core::ffi;
-use cortex_m::{Peripherals, iprintln};
+// Import necessary crates for embedded development
+use panic_halt as _; // Panic handler for no_std environment
+use cortex_m_rt::entry; // Runtime entry point
 
-//use panic_halt as _; // Use panic_halt crate for minimal panic handler
+// Import STM32F4xx HAL for device-specific support including interrupt vectors
+use stm32f4xx_hal as hal;
+use hal::{pac, prelude::*, gpio::{Output, OpenDrain, Pin}};
 
+#[entry]
+fn main() -> ! {
+    // Get access to the device peripherals
+    let dp = pac::Peripherals::take().unwrap();
+    let cp = cortex_m::Peripherals::take().unwrap();
 
+    // Configure the system clock to run at 168 MHz from HSE
+    let rcc = dp.RCC.constrain();
+    let clocks = rcc
+        .cfgr
+        .use_hse(25.MHz()) // External crystal is 25 MHz
+        .sysclk(168.MHz())  // System clock at 168 MHz
+        .freeze();
 
-extern "C" {
-    fn c_main_init();
-    fn HAL_Delay(delay: ffi::c_uint);
-    //fn HAL_GPIO_TogglePin(GPIO_TypeDef* GPIOx, ffi::c_ushort GPIO_Pin);
-}
+    // Create a delay provider using SysTick
+    let mut delay = cp.SYST.delay(&clocks);
 
+    // Configure GPIO PA8 as open collector output
+    let gpioa = dp.GPIOA.split();
+    let mut pa8: Pin<'A', 8, Output<OpenDrain>> = gpioa.pa8.into_open_drain_output();
 
-static mut DELAY_VALUE: ffi::c_uint = 500; // Delay in milliseconds
-
-/// Entry point of the program.
-///
-/// Runs a loop that calls the recursive test function and checks the stack guard.
-/// If the stack guard is corrupted, the loop breaks.
-#[no_mangle]
-extern "C" fn main() -> ! {
-    let mut cp = Peripherals::take().unwrap();
-    let stim = &mut cp.ITM.stim[0];
-
-    unsafe {
-        c_main_init();
-    }
-
-
-    loop{
-        unsafe {
-            iprintln!(stim, "Hello from ITM!");
-
-  //          rprintln!("LED toggled"); // not present in --release
-            HAL_Delay(DELAY_VALUE); // Delay 500 milliseconds
-        }
-    }
-}
-
-/// Panic handler for the program.
-///
-/// Loops forever on panic.
-#[panic_handler]
-fn panic(_info: &PanicInfo) -> ! {
+    // Your STM32F415 initialization code will go here
+    
     loop {
-    }
-}
-
-/// Callback for push button events.
-///
-/// This function is called by the BSP (Board Support Package) when the User button generates an
-/// interrupt.
-///
-/// It toggles the delay value used in the main loop.
-///
-/// # Arguments
-///
-/// * `Button` - The ID of the button that triggered the callback.
-///
-/// Toggles the delay value between 500ms and 1000ms when the user button (ID 0) is pressed.
-#[no_mangle]
-#[allow(non_snake_case)]
-pub extern "C" fn BSP_PB_Callback(Button: ffi::c_uint) {
-    unsafe {
-        if Button == 0 { // Assuming 0 is the button ID for the user button
-            DELAY_VALUE = if DELAY_VALUE == 500 { 1000 } else { 500 }; // Toggle delay between 500ms and 1000ms
-        }
+        // Toggle PA8 (set high - open drain will make it high-impedance)
+        pa8.set_high();
+        delay.delay_ms(1000_u32); // Wait 1 second
+        
+        // Toggle PA8 (set low - open drain will pull it to ground)
+        pa8.set_low();
+        delay.delay_ms(1000_u32); // Wait 1 second
     }
 }

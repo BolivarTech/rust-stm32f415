@@ -23,6 +23,35 @@
 		},
 		{
 			"type": "cargo",
+			"command": "clippy",
+			"args": [
+				"--all-targets",
+				"--all-features",
+				"--",
+				"-D",
+				"warnings"
+			],
+			"problemMatcher": [
+				"$rustc"
+			],
+			"group": "test",
+			"label": "rust: cargo clippy (strict)"
+		},
+		{
+			"type": "cargo",
+			"command": "clippy",
+			"args": [
+				"--all-targets",
+				"--all-features"
+			],
+			"problemMatcher": [
+				"$rustc"
+			],
+			"group": "test",
+			"label": "rust: cargo clippy (warnings)"
+		},
+		{
+			"type": "cargo",
 			"label": "Flash with flasher.py",
 			"command": "run",
 			"args": [
