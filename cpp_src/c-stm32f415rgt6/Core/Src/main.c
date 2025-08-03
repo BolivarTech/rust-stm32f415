@@ -17,12 +17,10 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
-#include <stdint.h>
 #include "main.h"
+#include <stdint.h>
 #include "stm32f415xx.h"
-#include "stm32f4xx_hal.h"
 #include "stm32f4xx_hal_cryp.h"
-
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 /* USER CODE END Includes */
