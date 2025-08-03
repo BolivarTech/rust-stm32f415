@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "name": "windows-gcc-x64",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/cpp_src/c-stm32f415rgt6/Core/Inc/**",
+                "${workspaceFolder}\\cpp_src\\c-stm32f415rgt6\\Drivers\\STM32F4xx_HAL_Driver\\Inc/**",
+                "${workspaceFolder}/cpp_src/c-stm32f415rgt6/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/**",
+                "${workspaceFolder}/cpp_src/c-stm32f415rgt6/Drivers/CMSIS/Device/ST/STM32F4xx/Include/**",
+                "${workspaceFolder}/cpp_src/c-stm32f415rgt6/Drivers/CMSIS/Include/**",
+                "C:\\Program Files (x86)\\Arm GNU Toolchain arm-none-eabi\\14.3 rel1\\arm-none-eabi\\include/**"
+            ],
+            "compilerPath": "\"C:\\\\Program Files (x86)\\\\Arm GNU Toolchain arm-none-eabi\\\\14.3 rel1\\\\bin\\\\arm-none-eabi-gcc.exe\"",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-gcc-x64",
+            "compilerArgs": [
+                ""
+            ]
+        }
+    ],
+    "version": 4
+}

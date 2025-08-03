@@ -1,0 +1,105 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cargo",
+			"command": "build",
+			"args": [
+				"--profile", 
+				"gdb", 
+				"--verbose"
+			],
+			"problemMatcher": [
+				"$rustc"
+			],
+			"group": "build",
+			"label": "rust: cargo build embedded"
+		},
+		{
+			"type": "cargo",
+			"command": "clean",
+			"group": "build",
+			"label": "rust: cargo clean embedded"
+		},
+		{
+			"type": "cargo",
+			"label": "Flash with flasher.py",
+			"command": "run",
+			"args": [
+				"--profile", 
+				"gdb", 
+				"--verbose"
+			],
+			"problemMatcher": [
+				"$rustc"
+			],
+			"group": "build",
+		},
+		{
+			"type": "shell",
+			"label": "Flash with probe-rs and start GDB server",
+			"command": "python",
+			"args": [
+				"flasher.py",
+				"-c",
+				"STM32G431R8",
+				"target/thumbv7em-none-eabihf/gdb/Rust_Embedded_Template_VSC.elf"
+			],
+			"group": "build",
+			"problemMatcher": [],
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false
+			},
+			"dependsOrder": "sequence",
+			"dependsOn": [
+				"Start probe-rs GDB server"
+			]
+		},
+		{
+			"type": "shell",
+			"label": "Start probe-rs GDB server",
+			"command": "probe-rs",
+			"args": [
+				"gdb",
+				"--chip",
+				"STM32G431R8",
+				"--port",
+				"1337"
+			],
+			"group": "build",
+			"problemMatcher": [],
+			"isBackground": true,
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "dedicated",
+				"showReuseMessage": true,
+				"clear": false
+			}
+		},
+		{
+			"type": "shell",
+			"label": "Detect debug probe",
+			"command": "probe-rs",
+			"args": [
+				"list"
+			],
+			"group": "test",
+			"problemMatcher": [],
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false
+			}
+		}
+	]
+}

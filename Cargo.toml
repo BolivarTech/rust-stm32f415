@@ -1,0 +1,32 @@
+[package]
+name = "rust_stm32f415"
+version = "0.1.0"
+edition = "2021"
+
+
+[dependencies]
+embedded-hal = "0.2" # Hardware abstraction layer for embedded systems
+nb = "1.1"  # Non-blocking traits for embedded systems
+cortex-m = "0.7"  # Cortex-M support for embedded systems
+cortex-m-rt = "0.7"  # Runtime support for Cortex-M
+panic-halt = "1.0"  # Panic handler that halts the system
+
+[dependencies.stm32f4xx-hal]
+version = "0.22"
+features = ["stm32f415", "defmt"] # replace the model of your microcontroller here
+
+[build-dependencies]
+cc = "1.2"  # For building C/C++ code if needed
+
+[profile.gdb]
+inherits = "dev"
+debug = 2
+debug-assertions = true
+overflow-checks = true
+opt-level = 0
+
+[profile.release]
+debug = 0
+debug-assertions = false
+opt-level = "z"
+lto = true

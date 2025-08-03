@@ -1,0 +1,8 @@
+# This script is used to flash a binary file to a target device with a Black Magic Probe.
+#monitor jtag_scan
+monitor swdp_scan
+attach 1
+monitor erase_mass
+load
+compare-sections
+kill

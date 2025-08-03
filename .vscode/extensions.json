@@ -1,0 +1,15 @@
+{
+    "recommendations": [
+        "rust-lang.rust-analyzer",
+        "marus25.cortex-debug",
+        "ms-vscode.cpptools",
+        "dan-c-underwood.arm",
+        "zixuanwang.linkerscript",
+        "sleistner.vscode-fileutils",
+        "christian-kohler.path-intellisense",
+        "eamodio.gitlens",
+        "yzhang.markdown-all-in-one",
+        "aaron-bond.better-comments",
+        "usernamehw.errorlens"
+    ]
+}

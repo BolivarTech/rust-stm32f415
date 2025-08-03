@@ -1,0 +1,87 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "Cortex Debug",
+            "cwd": "${workspaceFolder}",
+            "executable": "${workspaceFolder}\\target\\thumbv7em-none-eabihf\\gdb\\Rust_Embedded_Template_VSC.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "runToEntryPoint": "main",
+            "servertype": "jlink",
+            "device": "STM32G431R8",
+            "svdFile": "STM32G431.svd",
+            "svdPath": "D:\\jbolivarg\\EmbeddedProjects\\Rust\\rust-embedded-template-vsc",
+            "preLaunchTask": "Flash with flasher.py",
+            "serverArgs": [
+                "-if", "SWD",
+                "-speed", "4000",
+                "-noir",
+                "-endian", "little",
+                "-timeout", "0",
+                "-vd"
+            ],
+            "interface": "swd",
+            "swoConfig": {
+                "enabled": false
+            },
+            "showDevDebugOutput": "raw"
+        },
+        {
+            "name": "Flash & Debug with flasher.py",
+            "cwd": "${workspaceFolder}",
+            "executable": "${workspaceFolder}\\target\\thumbv7em-none-eabihf\\gdb\\Rust_Embedded_Template_VSC.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "runToEntryPoint": "main",
+            "servertype": "jlink",
+            "device": "STM32G431R8",
+            "svdFile": "STM32G431.svd",
+            "svdPath": "D:\\jbolivarg\\EmbeddedProjects\\Rust\\rust-embedded-template-vsc",
+            "preLaunchTask": "Flash with flasher.py",
+            "serverArgs": [
+                "-if", "SWD",
+                "-speed", "4000",
+                "-noir",
+                "-endian", "little",
+                "-timeout", "0",
+                "-vd"
+            ],
+            "interface": "swd",
+            "swoConfig": {
+                "enabled": false
+            },
+            "showDevDebugOutput": "raw"
+        },
+        {
+            "name": "Flash & Debug with probe-rs",
+            "cwd": "${workspaceFolder}",
+            "executable": "${workspaceFolder}\\target\\thumbv7em-none-eabihf\\gdb\\Rust_Embedded_Template_VSC.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "runToEntryPoint": "main",
+            "servertype": "external",
+            "gdbTarget": "localhost:1337",
+            "svdFile": "STM32G431.svd",
+            "preLaunchTask": "Flash with probe-rs and start GDB server",
+            "showDevDebugOutput": "raw"
+        },
+        {
+            "name": "Flash & Debug with Black Magic Probe",
+            "cwd": "${workspaceFolder}",
+            "executable": "${workspaceFolder}\\target\\thumbv7em-none-eabihf\\gdb\\Rust_Embedded_Template_VSC.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "runToEntryPoint": "main",
+            "servertype": "bmp",
+            "BMPGDBSerialPort": "COM8",
+            "svdFile": "STM32G431.svd",
+            "preLaunchTask": "Flash with flasher.py",
+            "showDevDebugOutput": "raw"
+        }
+    ]
+}
