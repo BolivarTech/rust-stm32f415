@@ -15,7 +15,7 @@
  */
 
 /* Define the entry point for the program */
-ENTRY(reset_handler)
+ENTRY(Reset_Handler)
 
 /* Specify the memory areas */
 MEMORY

@@ -116,21 +116,24 @@ fn main() {
     builder.compiler("arm-none-eabi-gcc");
 
     //2. Add all .c, .cpp, .s and .asm files from the specified directories
-    let src_paths = [
-        "cpp_src/c-stm32f415rgt6/Core",
-        "cpp_src/c-stm32f415rgt6/Drivers"
+    let src_paths: [&str; 0] = [
+        // "cpp_src/c-stm32f415rgt6/Core",
+        // "cpp_src/c-stm32f415rgt6/Drivers"
     ];
+//        "cpp_src/c-stm32f415rgt6/Core",
+//        "cpp_src/c-stm32f415rgt6/Drivers"
+//    ];
     for src_path in src_paths.iter() {
         add_source_files(&mut builder, src_path);
     }
 
     //3. Add all C/C++ include files (.h files)
-    let include_paths = [
-        "cpp_src/c-stm32f415rgt6/Core/Inc",
-        "cpp_src/c-stm32f415rgt6/Drivers/STM32F4xx_HAL_Driver/Inc",
-        "cpp_src/c-stm32f415rgt6/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy",
-        "cpp_src/c-stm32f415rgt6/Drivers/CMSIS/Device/ST/STM32F4xx/Include",
-        "cpp_src/c-stm32f415rgt6/Drivers/CMSIS/Include"
+    let include_paths:[&str; 0] = [
+//        "cpp_src/c-stm32f415rgt6/Core/Inc",
+//        "cpp_src/c-stm32f415rgt6/Drivers/STM32F4xx_HAL_Driver/Inc",
+//        "cpp_src/c-stm32f415rgt6/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy",
+//        "cpp_src/c-stm32f415rgt6/Drivers/CMSIS/Device/ST/STM32F4xx/Include",
+//        "cpp_src/c-stm32f415rgt6/Drivers/CMSIS/Include"
     ];
     for include_path in include_paths.iter() {
         builder.include(include_path);

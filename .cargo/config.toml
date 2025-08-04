@@ -11,6 +11,7 @@ build-std = ["core"]
 linker = "C:\\Program Files (x86)\\Arm GNU Toolchain arm-none-eabi\\14.3 rel1\\bin\\arm-none-eabi-gcc.exe"  # Uncomment if you want to use the ARM GNU Toolchain linker
 #linker = "arm-none-eabi-gcc"  # Uncomment if you want to use the first arm-none-eabi-gcc in your PATH
 rustflags = [
+    #"-C", "link-arg=-Tlinker_low_stack.ld",  # Linker script
     #"-C", "link-arg=-TSTM32F415RGTX_FLASH.ld",  # Linker script
     "-C", "link-arg=-Tlink.x",
     "-C", "link-arg=-Tdefmt.x",

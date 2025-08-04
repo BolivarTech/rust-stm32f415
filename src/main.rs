@@ -1,7 +1,10 @@
 #![no_std]
 #![no_main]
 
+//mod startup_stm32f415;
+
 // Import necessary crates for embedded development
+use defmt_rtt as _; // RTT logger
 use panic_halt as _; // Panic handler for no_std environment
 use cortex_m_rt::entry; // Runtime entry point
 
@@ -35,10 +38,12 @@ fn main() -> ! {
     loop {
         // Toggle PA8 (set high - open drain will make it high-impedance)
         pa8.set_high();
+        defmt::info!("PA8 set high");
         delay.delay_ms(1000_u32); // Wait 1 second
         
         // Toggle PA8 (set low - open drain will pull it to ground)
         pa8.set_low();
+        defmt::info!("PA8 set low");
         delay.delay_ms(1000_u32); // Wait 1 second
     }
 }

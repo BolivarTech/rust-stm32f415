@@ -10,6 +10,9 @@ nb = "1.1"  # Non-blocking traits for embedded systems
 cortex-m = "0.7"  # Cortex-M support for embedded systems
 cortex-m-rt = "0.7"  # Runtime support for Cortex-M
 panic-halt = "1.0"  # Panic handler that halts the system
+defmt = "0.3"
+defmt-rtt = "0.4"
+defmt-test = "0.3" # Optional, for unit tests
 
 [dependencies.stm32f4xx-hal]
 version = "0.22"
